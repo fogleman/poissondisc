@@ -6,6 +6,17 @@ import (
 	"time"
 )
 
+// Sample produces points via Poisson-disc sampling.
+// The points will all be within the box defined by `x0`, `y0`, `x1`, `y1`.
+// No two points will be closer than the defined radius `r`.
+// For each point, the algorithm will make `k` attempts to place a
+// neighboring point. Increase this value for a better sampling or decrease
+// it to reduce algorithm runtime.
+// You may provide your own `*rand.Rand` instance or `nil` to have one
+// created for you.
+// Learn more about Poisson-disc sampling from the links below:
+// https://www.jasondavies.com/poisson-disc/
+// https://bl.ocks.org/mbostock/dbb02448b0f93e4c82c3
 func Sample(x0, y0, x1, y1, r float64, k int, rnd *rand.Rand) []Point {
 	if rnd == nil {
 		rnd = rand.New(rand.NewSource(time.Now().UTC().UnixNano()))
