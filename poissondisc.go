@@ -46,7 +46,7 @@ func Sample(x0, y0, x1, y1, r float64, k int, rnd *rand.Rand) []Point {
 		// make k attempts to place a nearby point
 		for i := 0; i < k; i++ {
 			a := rnd.Float64() * 2 * math.Pi
-			d := rnd.Float64()*r + r
+			d := r * math.Sqrt(rnd.Float64() * 3 + 1)
 			x := point.X + math.Cos(a)*d
 			y := point.Y + math.Sin(a)*d
 			if x < x0 || y < y0 || x > x1 || y > y1 {
